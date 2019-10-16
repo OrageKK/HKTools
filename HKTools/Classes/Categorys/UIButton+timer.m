@@ -12,12 +12,12 @@
 
 #pragma mark - 设置按钮倒计时
 
-- (void)setTitleCountdownDisplayWithOldTitle:(NSString *)oldTitle{
+- (void)setTitleCountdownDisplayTime:(NSInteger)time WithOldTitle:(NSString *)oldTitle titleColor:(UIColor *)titleColor{
     
     UIFont *oldFont = self.titleLabel.font;
     UIColor *oldColor = self.titleLabel.textColor;
     
-    __block int timeout=60; //倒计时时间
+    __block NSInteger timeout=time; //倒计时时间
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
     dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
@@ -33,8 +33,8 @@
                 [self setTitleColor:oldColor forState:UIControlStateNormal];
             });
         }else{
-            int seconds = timeout % 120;
-            NSString *strTime = [NSString stringWithFormat:@"%.2d", seconds];
+            NSInteger seconds = timeout % 120;
+            NSString *strTime = [NSString stringWithFormat:@"%.2ld", (long)seconds];
             dispatch_async(dispatch_get_main_queue(), ^{
                 //设置界面的按钮显示 根据自己需求设置
                 [UIView beginAnimations:nil context:nil];
@@ -43,8 +43,7 @@
                 [UIView commitAnimations];
                 self.userInteractionEnabled = NO;
                 self.alpha = 0.5;
-               // self.titleLabel.font = [UIFont systemFontOfSize:oldFont.pointSize];
-                [self setTitleColor:[UIColor colorWithRGB:0x0D95FF] forState:UIControlStateNormal];
+                [self setTitleColor:titleColor forState:UIControlStateNormal];
             });
             timeout--;
         }
@@ -52,12 +51,12 @@
     dispatch_resume(_timer);
     
 }
-- (void)setTitleCountdownDisplayWithOldTitle:(NSString *)oldTitle WithBackgroundColor:(UIColor *)bgcolor titleColor:(UIColor *)titleColor{
+- (void)setTitleCountdownDisplayTime:(NSInteger)time WithOldTitle:(NSString *)oldTitle WithBackgroundColor:(UIColor *)bgcolor titleColor:(UIColor *)titleColor{
     
     UIFont *oldFont = self.titleLabel.font;
     UIColor *oldColor = self.titleLabel.textColor;
     UIColor *oldBgColor = self.backgroundColor;
-    __block int timeout=60; //倒计时时间
+    __block NSInteger timeout=time; //倒计时时间
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
     dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
@@ -74,8 +73,8 @@
                 self.backgroundColor = oldBgColor;
             });
         }else{
-            int seconds = timeout % 120;
-            NSString *strTime = [NSString stringWithFormat:@"%.2d", seconds];
+            NSInteger seconds = timeout % 120;
+            NSString *strTime = [NSString stringWithFormat:@"%.2ld", (long)seconds];
             dispatch_async(dispatch_get_main_queue(), ^{
                 //设置界面的按钮显示 根据自己需求设置
                 [UIView beginAnimations:nil context:nil];
@@ -84,7 +83,6 @@
                 [UIView commitAnimations];
                 self.userInteractionEnabled = NO;
                 self.alpha = 0.5;
-                // self.titleLabel.font = [UIFont systemFontOfSize:oldFont.pointSize];
                 [self setTitleColor:titleColor forState:UIControlStateNormal];
                 self.backgroundColor = bgcolor;
             });
