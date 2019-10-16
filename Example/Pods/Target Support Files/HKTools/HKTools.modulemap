@@ -1,0 +1,6 @@
+framework module HKTools {
+  umbrella header "HKTools-umbrella.h"
+
+  export *
+  module * { export * }
+}

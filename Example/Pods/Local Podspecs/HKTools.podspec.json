@@ -1,0 +1,22 @@
+{
+  "name": "HKTools",
+  "version": "0.1.0",
+  "summary": "A short description of HKTools.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/oragekk/HKTools",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "oragekk": "huangkunb@enn.cn"
+  },
+  "source": {
+    "git": "https://github.com/oragekk/HKTools.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "HKTools/Classes/**/*"
+}
