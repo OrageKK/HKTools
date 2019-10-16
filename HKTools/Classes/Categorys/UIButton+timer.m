@@ -44,7 +44,7 @@
                 self.userInteractionEnabled = NO;
                 self.alpha = 0.5;
                // self.titleLabel.font = [UIFont systemFontOfSize:oldFont.pointSize];
-                [self setTitleColor:APP_THEME_COLOR forState:UIControlStateNormal];
+                [self setTitleColor:[UIColor colorWithRGB:0x0D95FF] forState:UIControlStateNormal];
             });
             timeout--;
         }
