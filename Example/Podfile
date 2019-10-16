@@ -1,0 +1,7 @@
+use_frameworks!
+target 'HKTools_Tests' do
+  pod 'HKTools', :path => '../'
+  
+  pod 'Specta'
+    pod 'Expecta'
+end
